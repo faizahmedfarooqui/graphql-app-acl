@@ -45,8 +45,8 @@ npm run dev;
 
 ### API
 
-* APIs for client is available in [documentations/apis.app.graphql](https://git.geekyants.com/boilerplate/prisma-group-acl/blob/master/documentations/apis.app.graphql)
-* APIs for dev is availabe in [documentations/apis.dev.graphql](https://git.geekyants.com/boilerplate/prisma-group-acl/blob/master/documentations/apis.dev.graphql)
+* APIs for client is available in [documentations/apis.app.graphql](https://github.com/faizahmedfarooqui/graphql-app-acl/blob/master/documentations/apis.app.graphql)
+* APIs for dev is availabe in [documentations/apis.dev.graphql](https://github.com/faizahmedfarooqui/graphql-app-acl/blob/master/documentations/apis.dev.graphql)
 
 ### Commands
 

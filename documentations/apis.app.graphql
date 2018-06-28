@@ -1,0 +1,154 @@
+# User SignUp method with user & token in response...
+mutation {
+  signup (
+    email: "faizz.af@gmail.com"
+    password: "goldtree9"
+    name: "Faiz A Farooqui"
+  ) {
+    user {
+      id
+      email
+      name
+    }
+    token
+  }
+}
+
+# User Login method with user object & token in response...
+mutation {
+  login (
+    email: "faizz.af@gmail.com"
+    password: "goldtree9"
+  ) {
+    user {
+      id
+      email
+      name
+    }
+    token
+  }
+}
+
+# Everyone can see the list of all the published articles...
+query {
+  feed {
+    id
+    title
+    text
+    isPublished
+    createdAt
+    updatedAt
+  }
+}
+
+# Set "Authorization Header" for any mutations below this line...
+{
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjamYweWppZ3UwMDE4MDc2NDlveXNrazJxIiwiaWF0IjoxNTIxNjI4OTgwfQ.cfBPH7w5qogHYCCHJ71eTOMzBMkOYe4UEsg2QVHygr8"
+}
+
+# User to can see their profile
+query {
+  me {
+    email
+    name
+    role
+    posts {
+      id
+      title
+      text
+      isPublished
+    }
+  }
+}
+
+# User can use this api to update their password... 
+mutation {
+  updatePassword (
+    oldPassword: "faizahmed"
+  	newPassword: "nooneknows"
+  ) {
+    id
+    email
+  }
+}
+
+# Admin can update any user's password...
+mutation {
+  updatePassword (
+  	newPassword: "nooneknows"
+    userId: "user-id"
+  ) {
+    id
+    email
+    role
+  }
+}
+
+# User can see the list of his saved drafts...
+query {
+  drafts {
+    id
+    title
+    text
+    isPublished
+    createdAt
+    updatedAt
+  }
+}
+
+# User that sent the request is either the author of it or the ADMIN user...
+query {
+  post(id: "cjeznekt2003q07641zc3y479") {
+    id
+    title
+    text
+    isPublished
+    createdAt
+    updatedAt
+  }
+}
+
+# Can only be published by User that sent the request is the author of it...
+mutation {
+  publish(
+    id: "cjeznekt2003q07641zc3y479"
+  ) {
+    id
+    createdAt
+    updatedAt
+    isPublished
+    title
+    text
+    author {
+      id
+      email
+    }
+  }
+}
+
+# Can only be unpublished by User that sent the request is the author of it...
+mutation {
+  unpublish(
+    id: "cjeznekt2003q07641zc3y479"
+  ) {
+    id
+    createdAt
+    updatedAt
+    isPublished
+    title
+    text
+    author {
+      id
+      email
+    }
+  }
+}
+
+# Can only be deleted by User that sent the request is the author of it...
+mutation {
+  deletePost(
+    id: "cjeznekt2003q07641zc3y479"
+  ) {
+    id
+  }
+}

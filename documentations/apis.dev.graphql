@@ -1,0 +1,24 @@
+# Get all the users...
+query {
+  users {
+    name
+    email
+    password
+    posts {
+      
+    }
+  }
+}
+
+# Find user using where clause... 
+query {
+  user (where: {
+    id: "<user-id>"
+  }) {
+    name
+    email
+    role
+  }
+}
+
+# Get all the posts...

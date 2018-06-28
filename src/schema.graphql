@@ -1,0 +1,59 @@
+# import Post from "./generated/prisma.graphql"
+
+type Query {
+  # All authenticated users can retrieve a list of their feeds
+  feed: [Post!]!
+
+  # All authenticated users can retrieve a list of their drafts
+  drafts: [Post!]!
+
+  # All authenticated users can retrieve a list of posts
+  post(id: ID!): Post
+
+  # Authenticated users can retrieve information about themselves
+  me: User
+}
+
+type Mutation {
+  # Everyone can signup
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  
+  # Everyone can signup
+  login(email: String!, password: String!): AuthPayload!
+
+  # Does not publish but saves post edit/update
+  createDraft(title: String!, text: String!): Post!
+  
+  # Only the author of a post can publish it
+  publish(id: ID!): Post!
+
+  # Only the author of a post or an admins can unpublish it
+  unpublish(id: ID!): Post!
+  
+  # Only the author of a post or an admin can delete it
+  deletePost(id: ID!): Post!
+
+  # Users can only update their own passwords
+  # if `userId` is set, the user trying to update the password needs to be an admin
+  updatePassword(oldPassword: String, newPassword: String!, userId: ID): User!
+}
+
+type Subscription {
+  feedSubscription: PostSubscriptionPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+# The `User` type is a reduced version ("mask") of the `User` 
+# type from the data model (and database schema).
+# It does not expose the `password` fields.
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  posts: [Post!]!
+  role: Role!
+}
